@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Main</title>
+    <style></style>
+</head>
+
+<body>
+    <div class="container">
+        <p>
+            <ul>
+                <li>start chrome with --enable-features=AdInterestGroupAPIRestrictedPolicyByDefault,InterestGroupStorage,AdInterestGroupAPI,Fledge,AllowURNsInIframes --disable-features=FencedFrames</li>
+                <li>localhost and 127.0.0.1 don't work. A real domain is needed to use joinAdInterestGroup.</li>
+                <li>need https</li>
+                <li>Server response header must has 'x-allow-fledge': 'true'</li>
+                <li>For the ssl cert error while visiting publisher page, restarting by chrome://restart and visit those resource before publisher page</li>
+            </ul>
+        </p>
+        <iframe src='https://example.com:9443/join-interest-group' width="0" height="0"></iframe>
+        <!-- <iframe src='http://example.com:9000/join-interest-group' width="1" height="1" allow="join-ad-interest-group"></iframe> -->
+        <div>
+            <a target="_blank" href="https://example.com:9443/publisher">Publisher page</a>
+        </div>
+    </div>
+    <script type="text/javascript">
+ 
+    </script>
+</body>
+
+</html>
