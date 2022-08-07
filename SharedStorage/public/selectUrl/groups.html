@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>groups</title>
+    <style>
+        .container {
+            width: 600px;
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>The gorups</h1>
+        <fencedframe id="my-fenced-frame" mode="opaque-ads" width="900" height="600"></fencedframe>
+    </div>
+    <script type="text/javascript">
+        async function injectAd() {
+            
+            const key = 'active-group';
+            
+            // const value = window.sharedStorage.get(key);
+            // console.log("get value from shared storage", value);
+
+            await window.sharedStorage.worklet.addModule('/selectUrl/registerSelectURLOperation.js');
+            const opaqueURL = await window.sharedStorage.selectURL(
+                key,
+                [
+                    { url: "https://shared-storage-demo-advertiser.web.app/ads/experiment-ad-a.html", group: 'a' },
+                    { url: "https://shared-storage-demo-advertiser.web.app/ads/experiment-ad-b.html", group: 'b' }
+                ],
+                { data: { groups: ['a', 'b'] } }
+            );
+
+            document.getElementById('my-fenced-frame').src = opaqueURL;
+        }
+
+        injectAd();
+    </script>
+</body>
+
+</html>

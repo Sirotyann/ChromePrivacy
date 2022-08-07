@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Main</title>
+    <title>Main</title>
+    <style></style>
+</head>
+<body>
+    <div class="container">
+        <h1>Shared storage</h1>
+        <a href="./groups.html" target="_blank">Groups</a>
+        <!-- <fencedframe src="http://localhost:8080/news.html"></fencedframe> -->
+        <fencedframe id="my-fenced-frame" mode="opaque-ads" width="900" height="600"></fencedframe>
+        <div>
+            <label>Update Storage:</label>
+            <select id="dataSelect" onchange="updateStorage()">
+                <option value=""> -- </option>
+                <option value="a">group a</option>
+                <option value="b">group b</option>
+            </select>
+            <button onclick="clearStorage()">Clear all storage</button>
+        </div>
+    </div>
+    <script type="text/javascript">
+
+        const key = 'active-group';
+
+        function clearStorage() {
+            console.log("clear storage");
+            window.sharedStorage.clear();
+        }
+
+        function updateStorage() {
+            const data = document.querySelector('#dataSelect').value;
+            if (data.length) {
+                console.log(`set storage ${key} = ${data}`);
+                window.sharedStorage.set(key, data);
+            } else {
+                console.log(`delete storage ${key}`);
+                sharedStorage.delete(key);
+            }
+
+        }
+        
+        async function injectAd() {
+            await window.sharedStorage.worklet.addModule('/selectUrl/registerSelectURLOperation.js');
+
+            window.sharedStorage.set(key, 'a', { ignoreIfPresent: true });
+
+            const opaqueURL = await window.sharedStorage.selectURL(
+                key,
+                [
+                    { url: "https://shared-storage-demo-advertiser.web.app/ads/experiment-ad-a.html", group: 'a' },
+                    { url: "https://shared-storage-demo-advertiser.web.app/ads/experiment-ad-b.html", group: 'b' }
+                ],
+                { data: { groups: ['a', 'b'] } }
+            );
+
+            document.getElementById('my-fenced-frame').src = opaqueURL;
+        }
+
+        injectAd();
+    </script>
+</body>
+
+</html>
