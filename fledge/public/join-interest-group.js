@@ -2,17 +2,17 @@
 // console.log(ads);
 
 const groupName = 'shopping'
-const owner = 'https://example.com:9443'
+const owner = 'https://localhost:9443'
 
 const interestGroup = {
   name: groupName,
   owner: owner,
 
   // x-allow-fledge: true
-  biddingLogicUrl: `${owner}/bidding-logic-js`,
+  biddingLogicUrl: `${owner}/bidding-logic.js`,
 
   // x-allow-fledge: true
-  trustedBiddingSignalsUrl: `${owner}/bidding-signal-json`,
+  trustedBiddingSignalsUrl: `${owner}/bidding-signal.json`,
   trustedBiddingSignalsKeys: ['key1', 'key2'],
 
   dailyUpdateUrl: `${owner}/daily_update_url`, // not implemented yets

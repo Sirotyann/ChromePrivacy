@@ -12,7 +12,13 @@ const app = express();
 
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
-app.use(express.static('public'))
+app.use(express.static('public', {
+    setHeaders: function (res, path, stat) {
+        res.setHeader('supports-loading-mode', 'fenced-frame');
+        res.setHeader('x-allow-fledge', 'true');
+        res.set('Origin-Trial', 'Aw0/VBaSpR35KUWf94+YZ7ki6LS06lQzGx33SGIyNe5xdvipD71lVfO/ot9xIhZn9+ntQsN6GlPR2Ys98pnJCAoAAABteyJvcmlnaW4iOiJodHRwczovLzEyNy4wLjAuMTo5NDQzIiwiZmVhdHVyZSI6IlByaXZhY3lTYW5kYm94QWRzQVBJcyIsImV4cGlyeSI6MTY2MTI5OTE5OSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==');
+    }
+}))
 
 app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -20,6 +26,7 @@ app.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
     res.setHeader('supports-loading-mode', 'fenced-frame');
     res.setHeader('x-allow-fledge', 'true');
+    res.set('Origin-Trial', 'Aw0/VBaSpR35KUWf94+YZ7ki6LS06lQzGx33SGIyNe5xdvipD71lVfO/ot9xIhZn9+ntQsN6GlPR2Ys98pnJCAoAAABteyJvcmlnaW4iOiJodHRwczovLzEyNy4wLjAuMTo5NDQzIiwiZmVhdHVyZSI6IlByaXZhY3lTYW5kYm94QWRzQVBJcyIsImV4cGlyeSI6MTY2MTI5OTE5OSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==');
     // res.setHeader('Permissions-Policy', 'join-ad-interest-group=(), run-ad-auction=()');
     next();
 });
@@ -30,54 +37,19 @@ app.get('/', function (req, res) {
 });
 
 app.get('/reporting', function (req, res) {
-    console.log("reporting", req.body);
+    console.log(`reporting at ${getTime()}`, req.body);
     res.send('OK');
 });
 
-app.get('/publisher', function (req, res) {
-    console.log("publisher visited");
-    res.sendFile(path.join(__dirname + '/public/publisher.html'));
-});
-
-app.get('/ad-container', function (req, res) {
-    console.log("ad-container visited");
-    res.sendFile(path.join(__dirname + '/public/ad-container.html'));
-});
-
-app.get('/join-interest-group', function (req, res) {
-    res.sendFile(path.join(__dirname + '/public/join-interest-group.html'));
-});
-
-app.get('/bidding-signal-json', function (req, res) {
-    console.log("bidding-signal");
-    res.sendFile(path.join(__dirname + '/public/bidding-signal.json'));
-});
-
 app.get('/daily_update_url', function (req, res) {
-    console.log("daily_update_url called");
+    console.log(`daily_update_url called at ${getTime()}`);
     res.send('daily update')
 });
 
-/**
- * Js files
- */
-app.get('/join-interest-group-js', function (req, res) {
-    res.sendFile(path.join(__dirname + '/public/join-interest-group.js'));
-});
-
-app.get('/bidding-logic-js', function (req, res) {
-    console.log("bidding-logic-js");
-    res.sendFile(path.join(__dirname + '/public/bidding-logic.js'));
-});
-
-app.get('/run-ad-auction-js', function (req, res) {
-    res.sendFile(path.join(__dirname + '/public/run-ad-auction.js'));
-});
-
-app.get('/decision-logic-js', function (req, res) {
-    res.sendFile(path.join(__dirname + '/public/decision-logic.js'));
-});
-
+function getTime() {
+    const now = new Date();
+    return `${now.getHours()}:${now.getSeconds()}`;
+}
 // const open = require('open')
 // open('http://localhost:3000/') 
 
@@ -87,5 +59,5 @@ var httpsServer = https.createServer(credentials, app);
 httpServer.listen(9000);
 httpsServer.listen(9443);
 
-open('https://example.com:9443') 
+open('https://localhost:9443')
 // open('https://127.0.0.1:9443') 

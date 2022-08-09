@@ -3,6 +3,7 @@
 
 <head lang="en">
     <meta charset="UTF-8">
+    <meta http-equiv="origin-trial" content="Aw0/VBaSpR35KUWf94+YZ7ki6LS06lQzGx33SGIyNe5xdvipD71lVfO/ot9xIhZn9+ntQsN6GlPR2Ys98pnJCAoAAABteyJvcmlnaW4iOiJodHRwczovLzEyNy4wLjAuMTo5NDQzIiwiZmVhdHVyZSI6IlByaXZhY3lTYW5kYm94QWRzQVBJcyIsImV4cGlyeSI6MTY2MTI5OTE5OSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
     <title>Main</title>
     <style></style>
 </head>
@@ -12,21 +13,19 @@
         <p>
             <ul>
                 <li>start chrome with --enable-features=AdInterestGroupAPIRestrictedPolicyByDefault,InterestGroupStorage,AdInterestGroupAPI,Fledge,AllowURNsInIframes --disable-features=FencedFrames</li>
-                <li>localhost and 127.0.0.1 don't work. A real domain is needed to use joinAdInterestGroup.</li>
+                <!-- <li>localhost and 127.0.0.1 don't work. A real domain is needed to use joinAdInterestGroup.</li> -->
                 <li>need https</li>
+                <li>Allow https Self-Signed Certificate at local:  chrome://flags/#allow-insecure-localhost</li>
                 <li>Server response header must has 'x-allow-fledge': 'true'</li>
                 <li>For the ssl cert error while visiting publisher page, restarting by chrome://restart and visit those resource before publisher page</li>
             </ul>
         </p>
-        <iframe src='https://example.com:9443/join-interest-group' width="0" height="0"></iframe>
-        <!-- <iframe src='http://example.com:9000/join-interest-group' width="1" height="1" allow="join-ad-interest-group"></iframe> -->
+        <iframe src='https://localhost:9443/join-interest-group.html' width="0" height="0"></iframe>
+        <!-- <iframe src='http://localhost:9000/join-interest-group' width="1" height="1" allow="join-ad-interest-group"></iframe> -->
         <div>
-            <a target="_blank" href="https://example.com:9443/publisher">Publisher page</a>
+            <a target="_blank" href="https://localhost:9443/publisher.html">Publisher page</a>
         </div>
     </div>
-    <script type="text/javascript">
- 
-    </script>
 </body>
 
 </html>

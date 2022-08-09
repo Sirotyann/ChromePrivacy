@@ -1,13 +1,13 @@
 // ssp
 const auctionConfig = {
-    seller: 'https://example.com:9443/ad-container', // should https & same as decisionLogicUrl's origin
+    seller: 'https://localhost:9443/ad-container.html', // should https & same as decisionLogicUrl's origin
 
     // x-allow-fledge: true
-    decisionLogicUrl: '/decision-logic-js',
+    decisionLogicUrl: '/decision-logic.js',
 
     interestGroupBuyers: [
         // * is not supported yet
-        'https://example.com:9443',
+        'https://localhost:9443',
     ],
     // public for everyone
     auctionSignals: { auction_signals: 'auction_signals' },
@@ -18,7 +18,7 @@ const auctionConfig = {
     // only for single party
     perBuyerSignals: {
         // listed on interestGroupByers
-        'https://example.com:9443': {
+        'https://localhost:9443': {
             per_buyer_signals: 'per_buyer_signals',
         },
     },
