@@ -2,6 +2,7 @@ class SelectURLOperation {
     async run(urls, options) {
         const activeGroup = await this.sharedStorage.get('active-group');
         const groups = options.groups;
+        console.log(JSON.stringify({ urls, options }));
         const index = Array.from(groups).findIndex(it => it === activeGroup);
         console.log(`SelectURLOperation run, find group index ${index}, activeGroup(${activeGroup}) groups(${groups})`);
         return index;

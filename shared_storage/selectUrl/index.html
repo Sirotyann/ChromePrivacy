@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <h1>Shared storage</h1>
-        <a href="./groups.html" target="_blank">Groups</a>
+        <div><a href="/selectUrl/groups" target="_blank">Groups</a></div>
         <!-- <fencedframe src="http://localhost:8080/news.html"></fencedframe> -->
         <fencedframe id="my-fenced-frame" mode="opaque-ads" width="900" height="600"></fencedframe>
         <div>
@@ -39,26 +39,23 @@
                 window.sharedStorage.set(key, data);
             } else {
                 console.log(`delete storage ${key}`);
-                sharedStorage.delete(key);
+                window.sharedStorage.delete(key);
             }
-
         }
         
         async function injectAd() {
-            await window.sharedStorage.worklet.addModule('/selectUrl/registerSelectURLOperation.js');
-
-            window.sharedStorage.set(key, 'a', { ignoreIfPresent: true });
+            await window.sharedStorage.worklet.addModule('/registerSelectURLOperation.js');
 
             const opaqueURL = await window.sharedStorage.selectURL(
                 key,
                 [
-                    { url: "https://shared-storage-demo-advertiser.web.app/ads/experiment-ad-a.html", group: 'a' },
-                    { url: "https://shared-storage-demo-advertiser.web.app/ads/experiment-ad-b.html", group: 'b' }
-                ],
-                { data: { groups: ['a', 'b'] } }
+                    { url: "/pine_apple.html", group: 'a' },
+                    { url: "/snow_man.html", group: 'b' }
+                ], // urls of SelectURLOperation.run
+                { data: { groups: ['a', 'b'] } } // options of SelectURLOperation.run
             );
 
-            document.getElementById('my-fenced-frame').src = opaqueURL;
+            document.querySelector('#my-fenced-frame').src = opaqueURL;
         }
 
         injectAd();
