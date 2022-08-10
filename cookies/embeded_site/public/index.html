@@ -12,7 +12,10 @@
         <button onclick="prtCookie()">Send cookie to server</button>
     </div>
     <script type="text/javascript">
-        
+        // document.cookie = 'strict_main=StrictMain; SameSite=Strict;';
+        // document.cookie = 'lax_main=LaxMain; SameSite=Lax;';
+        // document.cookie = 'none_main=NoneMain; SameSite=None; Secure';
+
         function showCookie() {
             document.getElementById("board").innerText = document.cookie;
         }
