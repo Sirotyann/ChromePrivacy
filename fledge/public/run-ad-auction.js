@@ -28,9 +28,10 @@ document.addEventListener('DOMContentLoaded', async (e) => {
     const adAuctionResult = await navigator.runAdAuction(auctionConfig);
     console.log('run-ad-auction', { auctionConfig, adAuctionResult });
     const query = new URL(location.href).search;
-    const frametype = query === '?fencedframe' ? 'fencedframe' : 'iframe';
-    console.log(`display ads in <${frametype}>`);
-    const $iframe = document.createElement(frametype);
+    // const frametype = query === '?fencedframe' ? 'fencedframe' : 'iframe';
+    // console.log(`display ads in <${frametype}>`);
+    // const $iframe = document.createElement(frametype);
+    const $iframe = document.createElement('iframe');
     $iframe.src = adAuctionResult;
     document.body.appendChild($iframe);
 });
