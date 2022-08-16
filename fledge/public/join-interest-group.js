@@ -19,10 +19,12 @@ const interestGroup = {
   userBiddingSignals: { user_bidding_signals: 'user_bidding_signals' },
   ads: [
     {
-      renderUrl: `https://localhost:9443/ad.html`,
-      metadata: {
-        type: 'shopping',
-      },
+      renderUrl: `https://localhost:9443/ad1.html`,
+      metadata: { type: 'shopping' },
+    },
+    {
+      renderUrl: `https://localhost:9443/ad2.html`,
+      metadata: { type: 'shopping' },
     },
   ],
 };

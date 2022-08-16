@@ -39,13 +39,17 @@ app.get('/', function (req, res) {
 });
 
 app.get('/reporting', function (req, res) {
-    console.log(`reporting at ${getTime()}`, req.body);
+    console.log(`reporting at ${getTime()}`, req.query);
     res.send('OK');
 });
 
 app.get('/daily_update_url', function (req, res) {
-    console.log(`daily_update_url called at ${getTime()}`);
+    console.log(`daily_update_url called at ${getTime()}`, req.query);
     res.send('daily update')
+});
+
+app.get('/log', function(req, res) {
+    console.log(`[log] from ${req.query.from}`, req.query.content);
 });
 
 function getTime() {

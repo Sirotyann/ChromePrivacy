@@ -15,11 +15,13 @@ function generateBid(
         perBuyerSignals,
         trustedBiddingSignals,
         browserSignals,
+        ads: interestGroup.ads
     });
+
     return {
         ad: 'ad-metadata',
         bid: Math.floor(Math.random() * 100, 10),
-        render: interestGroup.ads[0].renderUrl,
+        render: interestGroup.ads[1].renderUrl,
     };
 }
 
@@ -29,11 +31,11 @@ function reportWin(
     sellerSignals,
     browserSignals
 ) {
-    log('[bindding] reportWin', {
-        auctionSignals,
-        perBuyerSignals,
-        sellerSignals,
-        browserSignals,
-    });
+    // log('[bindding] reportWin', {
+    //     auctionSignals,
+    //     perBuyerSignals,
+    //     sellerSignals,
+    //     browserSignals,
+    // });
     sendReportTo(browserSignals.interestGroupOwner + '/reporting?report=win');
 }

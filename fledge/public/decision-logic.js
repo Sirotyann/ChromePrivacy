@@ -1,5 +1,6 @@
 function log(label, o) {
     console.log(label, JSON.stringify(o, ' ', ' '));
+    // fetch(`/log?from=${label}&content=${JSON.stringify(o)}`)
 }
 
 function scoreAd(
@@ -9,13 +10,14 @@ function scoreAd(
     trustedScoringSignals,
     browserSignals
 ) {
-    log('scoreAd', {
-        adMetadata,
-        bid,
-        auctionConfig,
-        trustedScoringSignals,
-        browserSignals,
-    });
+    // log('scoreAd', {
+    //     adMetadata,
+    //     bid,
+    //     auctionConfig,
+    //     trustedScoringSignals,
+    //     browserSignals,
+    // });
+    log('scoreAd', { bid });
     return bid;
 }
 
