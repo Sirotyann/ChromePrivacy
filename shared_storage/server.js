@@ -4,8 +4,8 @@ const path = require('path')
 const fs = require('fs');
 const http = require('http');
 const https = require('https');
-const privateKey = fs.readFileSync('../localhost.key')
-const certificate = fs.readFileSync('../localhost.crt')
+const privateKey = fs.readFileSync('../localhost-key.pem')
+const certificate = fs.readFileSync('../localhost.pem')
 const credentials = { key: privateKey, cert: certificate };
 
 const app = express()
