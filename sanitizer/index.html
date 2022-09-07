@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <script>
+            const image = `<img src="https://www.w3schools.com/css/img_5terre.jpg" onclick="alert(1)" onerror=alert(0)>`;
+
+            function addImage() {
+                console.log('add image');
+                const elem = document.querySelector('#ele');
+                const mySanitizer = new Sanitizer();
+                elem.setHTML(image, { sanitizer: mySanitizer });
+            }
+
+            function addCode() {
+                console.log('add image');
+                const elem = document.querySelector('#ele');
+                elem.innerHTML = image;
+            }
+        </script>
+    </head>
+
+    <body>
+        <div id="ele">The element</div>
+        <button onclick="addImage()">Add image with Sanitizer</button>
+        <button onclick="addCode()">Add image without Sanitizer</button>
+    </body>
+</html>

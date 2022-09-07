@@ -10,9 +10,6 @@
 <body>
     <div class="container">
         <h1>Shared storage</h1>
-        <div><a href="/selectUrl/groups" target="_blank">Groups</a></div>
-        <!-- <fencedframe src="http://localhost:8080/news.html"></fencedframe> -->
-        <fencedframe id="my-fenced-frame" mode="opaque-ads" width="900" height="600"></fencedframe>
         <div>
             <label>Update Storage:</label>
             <select id="dataSelect" onchange="updateStorage()">
@@ -21,7 +18,10 @@
                 <option value="b">group b</option>
             </select>
             <button onclick="clearStorage()">Clear all storage</button>
+            <a href="/selectUrl/groups" target="_blank">Groups</a>
         </div>
+        <fencedframe id="my-fenced-frame" mode="opaque-ads" width="700" height="500"></fencedframe>
+     
     </div>
     <script type="text/javascript">
 
