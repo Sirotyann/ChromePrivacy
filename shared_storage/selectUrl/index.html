@@ -37,6 +37,7 @@
             if (data.length) {
                 console.log(`set storage ${key} = ${data}`);
                 window.sharedStorage.set(key, data);
+                // window.sharedStorage.set('data-for-month', `${new Date()}`);
             } else {
                 console.log(`delete storage ${key}`);
                 window.sharedStorage.delete(key);

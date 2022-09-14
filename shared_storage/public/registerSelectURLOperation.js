@@ -1,5 +1,8 @@
 class SelectURLOperation {
     async run(urls, options) {
+        //window.sharedStorage.set('data-for-month', `${new Date()}`);
+        const dateForMonth = await this.sharedStorage.get('data-for-month');
+        console.log(`[if data last more than a month] Today is ${new Date()}, the data stored at ${dateForMonth}`)
         const activeGroup = await this.sharedStorage.get('active-group');
         const groups = options.groups;
         console.log(JSON.stringify({ urls, options }));
