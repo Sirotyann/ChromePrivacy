@@ -25,7 +25,7 @@ app.use((req, res, next) => {
 
     console.log("Write Early Hints")
     const CRLF = '\r\n';
-    res.socket.write(`HTTP/1.1 103 Early Hints ${CRLF}`);
+    res.socket.write(`HTTP/2 103 Early Hints ${CRLF}`);
     res.socket.write(`Link: </style.css>; rel=preload; as=style${CRLF}`);
     res.socket.write(`Link: </main.js>; rel=preload; as=script${CRLF}`);
     res.socket.write(CRLF);
