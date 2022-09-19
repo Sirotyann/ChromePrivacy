@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Storage Partitioning</title>
+    <style>
+        div.row {
+            padding: 10px 0;
+            display: flex;
+            border-bottom: 1px solid #dcdcdc;
+        }
+        div.row label {
+            display: inline-block;
+            width: 70px;
+        }
+        #board {
+            margin-top: 10px;
+            padding: 10px 0;
+        }
+    </style>
+    <script type="text/javascript">
+        function saveToLocalStorage() {
+            const key = document.getElementById('key').value.trim();
+            localStorage.setItem(key, document.getElementById('value').value.trim())
+        }
+
+        function getMessage() {
+            const storageEntries = Object.entries(localStorage);
+            console.log('localStorage', storageEntries);
+            document.getElementById('board').innerHTML = JSON.stringify(storageEntries);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="row">
+        <label>key</label>
+        <input type="text" id="key" />
+    </div>
+    <div class="row">
+        <label>value</label>
+        <input type="text" id="value" />
+    </div>
+    <div id="board"></div>
+    <button onclick="saveToLocalStorage()">Save to LocalStorage</button>
+    <button onclick="getMessage()">Get message</button>
+</body>
+</html>

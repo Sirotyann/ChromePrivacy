@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Storage Partitioning</title>
+    <style>
+        .nav {
+            display: flex;
+            padding: 0 0 10px 0;
+        }
+
+        .nav a {
+            margin: 0 20px 0 0;
+        }
+    </style>
+    <script type="text/javascript">
+        function saveToLocalStorage() {
+            localStorage.setItem('message', document.getElementById('message').value.trim())
+        }
+    </script>
+</head>
+
+<body>
+    <div class="nav">
+        <a target="_blank" href="http://example.com:3000/">http://example.com:3000/</a>
+        <a target="_blank" href="http://local.test.com:3000/">http://local.test.com:3000/</a>
+    </div>
+    <p>flag: <span>chrome://flags/#third-party-storage-partitioning</span></p>
+    <iframe src="http://localhost:3000/frame.html" height="250" width="80%"></iframe>
+</body>
+</html>
