@@ -39,6 +39,17 @@ app.get('/selectUrl/groups', function (req, res) {
     res.sendFile(path.join(__dirname + '/selectUrl/groups.html'));
 });
 
+const dateFns = require('date-fns')
+app.get('/addDays/:count', function(req, res) {
+    console.log(new Date())
+    console.log(req.params);
+    const nextWeek = dateFns.addDays(new Date(), req.params.count)
+    console.log(nextWeek)
+    console.log(dateFns.format(nextWeek, 'yyyy-MM-dd HH:mm'))
+
+    res.send(``)
+});
+
 var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 

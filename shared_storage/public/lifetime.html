@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/1.30.1/date_fns.js"></script>
+    <script type="text/javascript">
+        function format(date) {
+            return dateFns.format(date, 'YYYY-MM-DD HH:mm')
+        }
+        function initTestData() {
+            console.log('initTestData');
+            const now = new Date();
+            const aWeek = format(dateFns.addDays(now, 7));
+            const twoWeeks = format(dateFns.addDays(now, 14));
+            const threeWeeks = format(dateFns.addDays(now, 21));
+            const fourWeeks = format(dateFns.addDays(now, 21));
+
+           
+            console.log(`One week: ${aWeek}`);
+            window.sharedStorage.set('one_week', aWeek);
+
+            console.log(`Two weeks: ${twoWeeks}`);
+            window.sharedStorage.set('two_weeks', twoWeeks);
+
+            console.log(`Three weeks: ${threeWeeks}`);
+            window.sharedStorage.set('three_weeks', threeWeeks);
+
+            console.log(`Four weeks: ${fourWeeks}`);
+            window.sharedStorage.set('four_weeks', fourWeeks);
+
+            console.log(`keep_visiting: ${now}`);
+            window.sharedStorage.set('keep_visiting', format(now));
+
+            const threeWeeksZeroDay = format(dateFns.addDays(now, 21));
+            const threeWeeksOneDay = format(dateFns.addDays(now, 22));
+            const threeWeeksTwoDays = format(dateFns.addDays(now, 23));
+            const threeWeeksThreeDays = format(dateFns.addDays(now, 24));
+            const threeWeeksFourDays = format(dateFns.addDays(now, 25));
+            const threeWeeksFiveDays = format(dateFns.addDays(now, 26));
+            const threeWeeksSixDays = format(dateFns.addDays(now, 27));
+            const threeWeeksSevenDays = format(dateFns.addDays(now, 28));
+
+            [threeWeeksZeroDay,threeWeeksOneDay,threeWeeksTwoDays,threeWeeksThreeDays,threeWeeksFourDays,threeWeeksFiveDays,threeWeeksSixDays,threeWeeksSevenDays].forEach((it, index) => {
+                console.log(`Three weeks ${index}: ${it}`);
+                window.sharedStorage.set(`dec_14_three_weeks_${index}`, it);
+            });
+            
+        }
+    </script>
+    <style>
+        #main {
+            padding: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+        <button onclick="initTestData()">initTestData</button>
+        <div id="data-table">haha</div>
+    </div>
+</body>
+
+</html>

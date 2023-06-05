@@ -14,6 +14,7 @@
 
 <body>
     <main>
+        <header style="height: 300px;">...</header>
         <p>
         <h1>I'm the index page</h1>
         <ul>
@@ -39,25 +40,36 @@
         document.addEventListener('load', () => { console.log("page load") });
 
         navigation.addEventListener("navigate", e => {
-            console.log('navigate', e);
-            // e.preventDefault();
+            // console.log('navigate', e);
 
-            if (!e.canTransition || e.hashChange) {
-                alert("Cannot transit");
-                return;
-            }
+            // if (!e.canTransition || e.hashChange) {
+            //     alert("Cannot transit");
+            //     return;
+            // }
 
-            e.transitionWhile((async () => {
-                e.signal.addEventListener("abort", () => {
-                    console.log("# transitionWhile - abort");
-                });
+            // e.transitionWhile((async () => {
+            //     e.signal.addEventListener("abort", () => {
+            //         console.log("# transitionWhile - abort");
+            //     });
 
-                const body = await (await fetch(e.destination.url, { signal: e.signal })).text();
-                const { title, main } = getResult(body);
-                console.log(body)
-                document.title = title;
-                document.querySelector("main").replaceWith(main);
-            })());
+            //     const body = await (await fetch(e.destination.url, { signal: e.signal })).text();
+            //     const { title, main } = getResult(body);
+            //     console.log(body)
+            //     document.title = title;
+            //     document.querySelector("main").replaceWith(main);
+            // })());
+            scroll: "manual",
+            e.intercept({
+                async handler() {
+                    const body = await (await fetch(e.destination.url, { signal: e.signal })).text();
+                    const { title, main } = getResult(body);
+                    console.log(body)
+                    document.title = title;
+                    document.querySelector("main").replaceWith(main);
+                    // e.restoreScroll();
+                    e.scroll();
+                }
+            });
 
             return;
         });

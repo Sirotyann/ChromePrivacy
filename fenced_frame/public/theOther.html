@@ -14,15 +14,11 @@
             fenced-frame need a response header:
             <b>'supports-loading-mode': 'fenced-frame'</b>
         </p>
-        <div>
-            <a href="https://127.0.0.1:9443/theOther.html" target="_blank">To 127.0.0.1</a>
-        </div>
         <iframe src='https://example.com:9443/board' width="600" height="300"></iframe>
-
 
         <div>
             <div>fenced-frame: '/board'</div>
-            <fencedframe src='/board' width="600" height="300" mode="opaque-ads"></fencedframe>
+            <fencedframe src='https://example.com:9443/board' width="600" height="300" mode="opaque-ads"></fencedframe>
         </div>
         <div style="margin-top: 20px;">
             fenced-frame: srcdoc

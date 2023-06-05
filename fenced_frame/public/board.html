@@ -5,13 +5,32 @@
     <meta charset="UTF-8">
     <!-- <meta http-equiv="origin-trial" content="Aw0/VBaSpR35KUWf94+YZ7ki6LS06lQzGx33SGIyNe5xdvipD71lVfO/ot9xIhZn9+ntQsN6GlPR2Ys98pnJCAoAAABteyJvcmlnaW4iOiJodHRwczovLzEyNy4wLjAuMTo5NDQzIiwiZmVhdHVyZSI6IlByaXZhY3lTYW5kYm94QWRzQVBJcyIsImV4cGlyeSI6MTY2MTI5OTE5OSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="> -->
     <title>Board</title>
-    <style></style>
+    <style>
+        body {
+            background-color: rgb(179, 233, 255);
+        }
+    </style>
+    <script>
+        function saveToStorage() {
+            const data = document.querySelector('#data').value;
+            console.log("saveToStorage", data);
+            localStorage.setItem('data', data);
+        }
+
+        function alertData() {
+            const data = localStorage.getItem('data');
+            alert("data is " + data);
+        }
+    </script>
 </head>
 
 <body>
     <div class="container">
         <div id="board">
             A Board
+            <input id="data" type="text" />
+            <button onclick="saveToStorage()">Save</button>
+            <button onclick="alertData()">Alert</button>
         </div>
     </div>
 </body>

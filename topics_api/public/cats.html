@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Topics iframe demo</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main.css">
+    <link href="favicon.ico" rel="shortcut icon">
+</head>
+
+<body>
+
+    <main>
+
+        <h1>🐱 Topics iframe demo</h1>
+        <p>This site is part of the Topics API demo: see <a
+            href="https://topics-demo.me:8443/">topics-demo.me</a> for more information.</p>
+
+        <p>This site is part of the Topics API demo: see <a
+                href="https://topics-demo.glitch.me/">topics-demo.glitch.me</a> for more information.</p>
+
+        <p>This page includes an iframe, displayed below. The <code>src</code> of this is
+            <code>https://topics-demo.glitch.me/observe/index.html</code>. JavaScript in that iframe calls
+            <code>document.browsingTopics()</code>.</p>
+
+        <p>One or more topics from the <a
+                href="https://github.com/patcg-individual-drafts/topics/blob/main/taxonomy_v1.md#:~:text=cats">topics
+                taxonomy</a> are inferred for the hostname of this page's URL.</p>
+
+        <p>If you return to <a href="https://topics-demo.glitch.me/">topics-demo.glitch.me</a>, one or more topics
+            observed for this page should be included in the array of topics returned by
+            <code>document.browsingTopics()</code>, since that site has the same origin as the iframe on this page, from
+            which topics were observed.</p>
+
+    </main>
+
+    <iframe src="https://topics-demo.glitch.me/observe/index.html"></iframe>
+
+</body>
+
+</html>

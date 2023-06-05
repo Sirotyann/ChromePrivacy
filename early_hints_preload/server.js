@@ -2,8 +2,6 @@ const express = require('express')
 const path = require('path');
 const app = express()
 
-app.use(express.static('public'));
-
 // app.use((req, res, next) => {
 //     if (req.query.early_hints !== "true") {
 //         return next();
@@ -21,17 +19,31 @@ app.use(express.static('public'));
 
 let index = 0;
 
-app.get('/', function (req, res) {
-    if (req.query.early_hints === "true") {
-        console.log("Write Early Hints / " + index++)
-        const CRLF = '\r\n';
-        res.socket.write(`HTTP/1.1 103 ${CRLF}`);
-        res.socket.write(`Link: </style.css>; rel=preload; as=style${CRLF}`);
-        res.socket.write(`Link: </main.js>; rel=preload; as=script${CRLF}`);
-        res.socket.write(CRLF);
-    }
+const earlyHints = require('early-hints')
+app.use(earlyHints([
+    { path: '/style.css', rel: 'preload' },
+    { path: '/main.js', rel: 'preload', as: 'script' },
+    { path: '/font.woff', as: 'font' }
+]))
 
-    res.sendFile(path.join(__dirname + '/public/index.html'));
+app.use(express.static('public'));
+
+
+
+app.get('/early_hints', function (req, res) {
+
+    console.log("Write Early Hints / " + index++)
+    const CRLF = '\r\n';
+    res.socket.write(`HTTP/1.1 103 ${CRLF}`);
+    res.socket.write(`Link: </style.css>; rel=preconnect; as=style${CRLF}`);
+    res.socket.write(`Link: </main.js>; rel=preconnect; as=script${CRLF}`);
+    res.socket.write(CRLF);
+
+
+    setTimeout(() => {
+        res.sendFile(path.join(__dirname + '/public/index.html'));
+    }, 2000)
+
 });
 
 
@@ -47,5 +59,8 @@ app.get('/negative', function (req, res) {
 
     res.sendFile(path.join(__dirname + '/public/negative.html'));
 });
+
+
+
 
 app.listen(3000)
