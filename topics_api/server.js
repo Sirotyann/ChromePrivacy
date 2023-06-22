@@ -44,6 +44,12 @@ app.get('/send-topics', (req, res) => {
     res.send(topics)
 })
 
+app.get('/fetchTopics', (req, res) => {
+    console.log(req.query)
+    console.log(` fetchTopics Headers ::`, req.headers['sec-browsing-topics'])
+    res.sendStatus(200)
+})
+
 var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 

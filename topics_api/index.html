@@ -5,13 +5,34 @@
     <meta charset="UTF-8">
     <title>Topics API</title>
     <style></style>
-    <script type="module" src="/taxonomy.js"></script>
-    <script type="module" src="/main.js"></script>
+    <!-- <script type="module" src="/taxonomy.js"></script>
+    <script type="module" src="/main.js"></script> -->
+    <script>
+        async function getTopics() {
+            try {
+                if ('browsingTopics' in document &&
+                    document.featurePolicy.allowsFeature('browsing-topics')) {
+                    
+                    const topics = await document.browsingTopics({ skipObservation: true});
+                    console.log("Topics:", topics)
+                } else {
+                    console.log('document.browsingTopics() not supported');
+                }
+
+            } catch (error) {
+                console.log('Error:', error);
+            }
+        }
+    </script>
 </head>
 
 <body>
     <div class="container">
         <p>Topics API</p>
+        <div>
+            <button onclick="fetchWithBrowserTopicsHeader()">Send Fetch request</button>
+            <button onclick="getTopics()">Get Topics</button>
+        </div>
         <a href="https://birds-birds-birds-birds-birds.birds.com:8443/birds.html">birds-birds-birds-birds</a>
         <p>
             <label>log</label>
@@ -35,10 +56,16 @@
         </ul>
     </div>
     <script type="text/javascript">
-        // document.browsingTopics().then(resp => {
-        //     console.log("topics", resp)
-        // })
+        document.browsingTopics().then(resp => {
+            console.log("topics", resp)
+        })
 
+        function fetchWithBrowserTopicsHeader() {
+            fetch('/fetchTopics', { browsingTopics: true }).
+                then(function (response) {
+                    console.log(response);
+                });
+        }
     </script>
 </body>
 
