@@ -5,15 +5,14 @@
     <meta charset="UTF-8">
     <title>Topics API</title>
     <style></style>
-    <!-- <script type="module" src="/taxonomy.js"></script>
-    <script type="module" src="/main.js"></script> -->
+    <meta http-equiv="origin-trial" content="Ax2z1kSVU1C/OlGBegnpgRDQwOYXqNqih8CCSg9ywftOMxo4bIqM6s/htQh+CP9NGupGO69GoOOvez9pmSVLpgUAAABteyJvcmlnaW4iOiJodHRwczovL2xvY2FsaG9zdDo5NDQzIiwiZmVhdHVyZSI6IlByaXZhY3lTYW5kYm94QWRzQVBJcyIsImV4cGlyeSI6MTY5NTE2Nzk5OSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==">
     <script>
         async function getTopics() {
             try {
                 if ('browsingTopics' in document &&
                     document.featurePolicy.allowsFeature('browsing-topics')) {
                     
-                    const topics = await document.browsingTopics({ skipObservation: true});
+                    const topics = await document.browsingTopics();
                     console.log("Topics:", topics)
                 } else {
                     console.log('document.browsingTopics() not supported');
@@ -33,7 +32,8 @@
             <button onclick="fetchWithBrowserTopicsHeader()">Send Fetch request</button>
             <button onclick="getTopics()">Get Topics</button>
         </div>
-        <a href="https://birds-birds-birds-birds-birds.birds.com:8443/birds.html">birds-birds-birds-birds</a>
+        <a href="https://birds-birds-birds-birds-birds.birds.com:9443/birds.html">birds-birds-birds-birds</a>
+        <a href="https://cats-cats-cats-cats.me:9443/cats.html">cats</a>
         <p>
             <label>log</label>
         <div id="log"></div>
@@ -50,9 +50,9 @@
             <li><a href="https://pets-animals-pets-cats.glitch.me">pets-animals-pets-cats.glitch.me</a></li>
             <li><a href="https://cats-cats-cats-cats.glitch.me">cats-cats-cats-cats.glitch.me</a></li>
             <li><a href="https://cats-pets-animals-pets.glitch.me">cats-pets-animals-pets.glitch.me</a></li>
-            <li><a
-                    href="https://cats-feline-meow-purr-whiskers-pet.glitch.me">cats-feline-meow-purr-whiskers-pet.glitch.me</a>
+            <li><a href="https://cats-feline-meow-purr-whiskers-pet.glitch.me">cats-feline-meow-purr-whiskers-pet.glitch.me</a>
             </li>
+            <li><a href='https://www.rottentomatoes.com/browse/movies_in_theaters/'>Rotten Tomatos</a></li>
         </ul>
     </div>
     <script type="text/javascript">

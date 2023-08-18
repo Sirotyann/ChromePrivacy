@@ -44,6 +44,12 @@ app.get('/send-topics', (req, res) => {
     res.send(topics)
 })
 
+app.get('/observe', function (req, res) {
+    console.log(` observe iframe Headers ::`, req.headers['sec-browsing-topics'])
+    res.sendFile(path.join(__dirname + '/public/observe.html'));
+});
+
+
 app.get('/fetchTopics', (req, res) => {
     console.log(req.query)
     console.log(` fetchTopics Headers ::`, req.headers['sec-browsing-topics'])
@@ -53,5 +59,5 @@ app.get('/fetchTopics', (req, res) => {
 var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 
-httpServer.listen(8080);
-httpsServer.listen(8443);
+httpServer.listen(9080);
+httpsServer.listen(9443);
